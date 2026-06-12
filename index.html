@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="AnimeCreate Studio — мобильная HTML-студия для создания аниме-кадров, персонажей, сцен, таймлайна и анимаций."
+    />
+    <title>AnimeCreate Studio — создание аниме</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero" id="top">
+        <nav class="topbar" aria-label="Главная навигация">
+          <a class="brand" href="#top" aria-label="AnimeCreate Studio">
+            <span class="brand__mark">創</span>
+            <span>
+              <strong>AnimeCreate</strong>
+              <small>Studio</small>
+            </span>
+          </a>
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-menu">
+            <span></span><span></span><span></span>
+            <span class="sr-only">Открыть меню</span>
+          </button>
+          <div class="menu" id="main-menu">
+            <a href="#studio">Студия</a>
+            <a href="#characters">Персонажи</a>
+            <a href="#timeline">Кадры</a>
+            <a href="#export">Экспорт</a>
+          </div>
+        </nav>
+
+        <section class="hero__grid">
+          <div class="hero__content">
+            <p class="eyebrow">Полноценный HTML-конструктор аниме</p>
+            <h1>Создавай сцены, персонажей и покадровую анимацию прямо в браузере.</h1>
+            <p class="hero__lead">
+              Собери идею, настрой стиль, добавь героя, разложи ключевые кадры по таймлайну и
+              подготовь промпты/экспорт для генерации или дальнейшего монтажа.
+            </p>
+            <div class="hero__actions">
+              <a class="button button--primary" href="#studio">Начать проект</a>
+              <button class="button button--ghost" id="load-demo" type="button">Загрузить демо</button>
+            </div>
+            <dl class="hero__stats" aria-label="Возможности">
+              <div><dt>24</dt><dd>fps предпросмотр</dd></div>
+              <div><dt>∞</dt><dd>кадры сцен</dd></div>
+              <div><dt>JSON</dt><dd>экспорт проекта</dd></div>
+            </dl>
+          </div>
+          <aside class="hero__preview" aria-label="Превью аниме-сцены">
+            <div class="phone-frame">
+              <div class="scene-card animated-preview">
+                <div class="sun"></div>
+                <div class="cloud cloud--one"></div>
+                <div class="cloud cloud--two"></div>
+                <div class="torii"></div>
+                <div class="character-preview">
+                  <span class="hair"></span>
+                  <span class="face"></span>
+                  <span class="body"></span>
+                  <span class="sword"></span>
+                </div>
+                <div class="caption-bubble">「夢を描こう」</div>
+              </div>
+            </div>
+          </aside>
+        </section>
+      </header>
+
+      <main>
+        <section class="feature-strip" aria-label="Основные функции">
+          <article><span>🎬</span><strong>Сцены</strong><p>Фон, свет, камера, атмосфера.</p></article>
+          <article><span>🧑‍🎤</span><strong>Герои</strong><p>Черты, костюм, эмоции, позы.</p></article>
+          <article><span>🧩</span><strong>Раскадровка</strong><p>Ключевые кадры, длительность, движение.</p></article>
+          <article><span>📦</span><strong>Экспорт</strong><p>JSON, промпты, заметки проекта.</p></article>
+        </section>
+
+        <section class="workspace" id="studio">
+          <div class="section-heading">
+            <p class="eyebrow">Главная студия</p>
+            <h2>Панель создания аниме</h2>
+            <p>Заполни параметры — справа автоматически обновятся промпт, список кадров и превью.</p>
+          </div>
+
+          <div class="studio-layout">
+            <form class="control-panel" id="anime-form">
+              <fieldset>
+                <legend>Идея проекта</legend>
+                <label>
+                  Название
+                  <input id="project-title" name="title" type="text" value="Лунный самурай" maxlength="80" />
+                </label>
+                <label>
+                  Жанр
+                  <select id="genre" name="genre">
+                    <option>Фэнтези</option>
+                    <option>Киберпанк</option>
+                    <option>Романтика</option>
+                    <option>Сёнэн</option>
+                    <option>Драма</option>
+                    <option>Повседневность</option>
+                  </select>
+                </label>
+                <label>
+                  Синопсис
+                  <textarea id="synopsis" name="synopsis" rows="4">Юная мечница защищает город фонарей от теневых духов и раскрывает тайну древнего созвездия.</textarea>
+                </label>
+              </fieldset>
+
+              <fieldset id="characters">
+                <legend>Персонаж</legend>
+                <div class="two-col">
+                  <label>
+                    Имя героя
+                    <input id="character-name" type="text" value="Акира" />
+                  </label>
+                  <label>
+                    Эмоция
+                    <select id="emotion">
+                      <option>Решимость</option>
+                      <option>Радость</option>
+                      <option>Грусть</option>
+                      <option>Гнев</option>
+                      <option>Удивление</option>
+                    </select>
+                  </label>
+                </div>
+                <label>
+                  Внешность и костюм
+                  <textarea id="appearance" rows="3">Серебряные волосы, хаори цвета индиго, светящийся катана-клинок, амулет в форме луны.</textarea>
+                </label>
+                <div class="color-row">
+                  <label>Волосы <input id="hair-color" type="color" value="#d8e8ff" /></label>
+                  <label>Костюм <input id="outfit-color" type="color" value="#5946ff" /></label>
+                  <label>Акцент <input id="accent-color" type="color" value="#ff70c8" /></label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Стиль и камера</legend>
+                <div class="two-col">
+                  <label>
+                    Визуальный стиль
+                    <select id="visual-style">
+                      <option>Кинематографичное аниме 90-х</option>
+                      <option>Современный clean anime</option>
+                      <option>Акварельная манга</option>
+                      <option>Неоновый киберпанк</option>
+                      <option>Ghibli-like сказочность</option>
+                    </select>
+                  </label>
+                  <label>
+                    План камеры
+                    <select id="camera">
+                      <option>Средний план</option>
+                      <option>Крупный план</option>
+                      <option>Общий план</option>
+                      <option>Динамический Dutch angle</option>
+                      <option>Панорама сверху</option>
+                    </select>
+                  </label>
+                </div>
+                <label>
+                  Фон / локация
+                  <input id="location" type="text" value="ночной город с бумажными фонарями и цветущей сакурой" />
+                </label>
+                <label>
+                  Интенсивность движения: <output id="motion-output">65%</output>
+                  <input id="motion" type="range" min="0" max="100" value="65" />
+                </label>
+              </fieldset>
+
+              <div class="panel-actions">
+                <button class="button button--primary" type="button" id="generate-frame">Добавить кадр</button>
+                <button class="button button--soft" type="button" id="randomize">Случайная идея</button>
+                <button class="button button--danger" type="reset">Сбросить</button>
+              </div>
+            </form>
+
+            <aside class="output-panel" aria-live="polite">
+              <div class="live-preview" id="live-preview">
+                <div class="preview-bg"></div>
+                <div class="preview-moon"></div>
+                <div class="preview-character" id="preview-character">
+                  <span class="preview-hair"></span>
+                  <span class="preview-head"></span>
+                  <span class="preview-body"></span>
+                  <span class="preview-blade"></span>
+                </div>
+                <p class="preview-title" id="preview-title">Лунный самурай</p>
+              </div>
+
+              <div class="tabs" role="tablist" aria-label="Результаты проекта">
+                <button class="tab is-active" type="button" data-tab="prompt" role="tab">Промпт</button>
+                <button class="tab" type="button" data-tab="shotlist" role="tab">Шоты</button>
+                <button class="tab" type="button" data-tab="notes" role="tab">Заметки</button>
+              </div>
+              <div class="tab-panel is-active" id="tab-prompt" role="tabpanel">
+                <textarea id="prompt-output" rows="9" readonly></textarea>
+                <button class="button button--soft button--full" id="copy-prompt" type="button">Скопировать промпт</button>
+              </div>
+              <div class="tab-panel" id="tab-shotlist" role="tabpanel">
+                <ol class="shot-list" id="shot-list"></ol>
+              </div>
+              <div class="tab-panel" id="tab-notes" role="tabpanel">
+                <ul class="checklist">
+                  <li><input type="checkbox" checked /> Логлайн и конфликт понятны</li>
+                  <li><input type="checkbox" /> Добавить референсы костюма</li>
+                  <li><input type="checkbox" /> Подготовить звуки и музыку</li>
+                  <li><input type="checkbox" /> Проверить плавность переходов</li>
+                </ul>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="timeline-section" id="timeline">
+          <div class="section-heading">
+            <p class="eyebrow">Покадровая анимация</p>
+            <h2>Таймлайн, кадры и предпросмотр</h2>
+            <p>Управляй длительностью, добавляй ключевые кадры и запускай простую анимацию сцены.</p>
+          </div>
+          <div class="timeline-tools">
+            <button class="button button--primary" id="play-animation" type="button">▶ Воспроизвести</button>
+            <button class="button button--soft" id="duplicate-frame" type="button">Дублировать кадр</button>
+            <button class="button button--soft" id="remove-frame" type="button">Удалить кадр</button>
+            <label class="fps-control">FPS <input id="fps" type="number" min="1" max="60" value="24" /></label>
+          </div>
+          <div class="timeline" id="frame-timeline" aria-label="Кадры анимации"></div>
+        </section>
+
+        <section class="tools-grid" aria-label="Дополнительные инструменты">
+          <article>
+            <h3>🎭 Эмоции</h3>
+            <p>Быстро меняй настроение героя для драматичных диалогов и реакций.</p>
+          </article>
+          <article>
+            <h3>🖌️ Палитра</h3>
+            <p>Настраивай цвета волос, костюма и акцентного света в реальном времени.</p>
+          </article>
+          <article>
+            <h3>🎥 Камера</h3>
+            <p>Подбирай крупность плана, движение и визуальную композицию кадра.</p>
+          </article>
+          <article>
+            <h3>📝 Промпты</h3>
+            <p>Получай готовое описание для генераторов изображений и видео.</p>
+          </article>
+        </section>
+
+        <section class="export-card" id="export">
+          <div>
+            <p class="eyebrow">Финал</p>
+            <h2>Сохрани проект и продолжи работу где угодно</h2>
+            <p>Экспортируй все настройки, персонажа, кадры и промпт в JSON-файл.</p>
+          </div>
+          <div class="export-actions">
+            <button class="button button--primary" id="export-json" type="button">Скачать JSON</button>
+            <button class="button button--ghost" id="import-json" type="button">Импорт JSON</button>
+            <input id="import-file" type="file" accept="application/json" hidden />
+          </div>
+        </section>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
